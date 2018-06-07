@@ -1,0 +1,21 @@
+<ul>
+  <% @messages.each do |message| %>
+    <% if message.body %>
+      <%= message.user.email%> <%= ":" %>
+      <li>
+        <h4><%= message.user.user_name %></h4>
+        <p><%= message.body %></p>
+      </li>
+    <% end %>
+  <% end %>
+</ul>
+
+<%= form_for [@conversation, @message] do |f| %>
+  <div class="field">
+    <%= f.text_area :body, placeholder: "Your message" %>
+  </div>
+
+  <%= f.submit "Send" %>
+<% end %>
+<br>
+<%= link_to 'Back', users_path %>
